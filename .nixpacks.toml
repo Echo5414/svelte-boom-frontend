@@ -1,0 +1,6 @@
+[phases]
+setup = "npm ci"
+build = "npm run build"
+
+[deploy]
+static = "/build"

@@ -1,0 +1,154 @@
+:root {
+  /* Colors - Updated with the exact colors from the screenshot */
+  --color-background: #1C1B20;    /* Darkest gray */
+  --color-surface: #292930;       /* Dark gray */
+  --color-surface-hover: #31333c; /* Slightly lighter dark gray */
+  --color-surface-active: #343740;/* Even lighter dark gray */
+  --color-primary: #F74843;       /* Red accent */
+  --color-primary-hover: #F85F5B; /* Slightly lighter red */
+  --color-text-primary: #E6E6EA;  /* Light gray text */
+  --color-text-secondary: #828291;/* Medium gray text */
+  --color-text-tertiary: #43434d; /* Darker gray text */
+  --color-border: rgba(82, 82, 92, 0.2); /* Based on the medium gray */
+  --color-divider: rgba(82, 82, 92, 0.1);
+
+  /* Typography */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.5rem;    /* 12px */
+  --font-size-sm: 0.85rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.5rem;    /* 20px */
+  --font-size-2xl: 1.75rem;   /* 28px */
+  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-4xl: 2.5rem;    /* 40px - for page headings */
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.375rem;  /* 6px */
+  --radius-lg: 0.5rem;    /* 8px */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 0 64px 0 rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --transition-all: all 0.2s ease;
+  --transition-colors: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  /* Layout */
+  --sidebar-width: 240px;
+  --header-height: 64px;
+  --content-max-width: 1680px;
+  --content-width: 1fr;
+  --user-section-width: 340px;
+
+  /* Z-index */
+  --z-header: 100;
+  --z-sidebar: 200;
+  --z-modal: 300;
+  --z-tooltip: 400;
+
+  /* Layout Spacing */
+  --content-padding-x: 120px;  /* Left/Right padding for main content */
+  --content-padding-y: 64px;   /* Top/Bottom padding for main content */
+  
+  /* Logo */
+  --logo-height: 36px;
+  --logo-color: var(--color-primary); /* For SVG fill color */
+  --logo-width: 100%;
+}
+
+/* Optional: Add some global styles */
+:root {
+  color-scheme: dark;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-active);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* Add these global select styles */
+select {
+  color-scheme: dark !important;
+}
+
+select option {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text-primary) !important;
+}
+
+select option:hover,
+select option:focus,
+select option:active,
+select option:checked {
+  background: var(--color-surface-active) !important;
+  color: var(--color-text-primary) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Firefox specific */
+@-moz-document url-prefix() {
+  select {
+    color-scheme: dark !important;
+  }
+  
+  select option,
+  select option:hover,
+  select option:focus,
+  select option:active {
+    background-color: var(--color-surface-active) !important;
+    color: var(--color-text-primary) !important;
+    border: none !important;
+    outline: none !important;
+  }
+}
+
+/* Webkit specific */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select option,
+  select option:hover,
+  select option:focus,
+  select option:active {
+    background-color: var(--color-surface-active) !important;
+    color: var(--color-text-primary) !important;
+    border: none !important;
+    outline: none !important;
+  }
+} 
