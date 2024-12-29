@@ -7,7 +7,7 @@
   onMount(() => {
     const params = new URLSearchParams(window.location.search);
     
-    fetch(`/api/auth/steam/callback?${params.toString()}`)
+    fetch(`${STRAPI_URL}/api/auth/steam/callback?${params.toString()}`)
       .then(response => response.json())
       .then(data => {
         // Send message to parent window
