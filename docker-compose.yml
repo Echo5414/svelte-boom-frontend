@@ -5,4 +5,4 @@ services:
     build: .
     container_name: svelte-boom-frontend
     ports:
-      - "5173:5173"
+      - "4173:4173"

@@ -13,7 +13,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that `npm run preview` will listen on (default 4173)
-EXPOSE 5173
+EXPOSE 4173
 
 # Start the app
 CMD ["npm", "run", "preview"]
