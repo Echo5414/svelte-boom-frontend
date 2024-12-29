@@ -18,6 +18,7 @@
     # ---------------------
     # 2) PRODUCTION STAGE
     # ---------------------
+        
     FROM nginx:1.25-alpine
     
     # Copy the static build from the "build" stage
