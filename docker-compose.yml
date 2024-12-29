@@ -1,37 +1,8 @@
-version: '3'
+version: "3"
+
 services:
-  frontend:
-    build: ./frontend
+  svelte-frontend:
+    build: .
+    container_name: svelte-boom-frontend
     ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/app
-    environment:
-      - VITE_STRAPI_URL=http://backend:1337
-
-  backend:
-    build: ./backend
-    ports:
-      - "1337:1337"
-    volumes:
-      - ./backend:/app
-    environment:
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=strapi
-      - DATABASE_USERNAME=strapi
-      - DATABASE_PASSWORD=strapi
-
-  db:
-    image: postgres:14
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=strapi
-      - POSTGRES_USER=strapi
-      - POSTGRES_PASSWORD=strapi
-
-volumes:
-  postgres_data: 
+      - "5173:5173"
