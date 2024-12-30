@@ -7,8 +7,8 @@
     const params = new URLSearchParams({
       'openid.ns': 'http://specs.openid.net/auth/2.0',
       'openid.mode': 'checkid_setup',
-      'openid.return_to': `${import.meta.env.VITE_FRONTEND_URL}/auth/steam/callback`,
-      'openid.realm': import.meta.env.VITE_FRONTEND_URL,
+      'openid.return_to': `${import.meta.env.VITE_STRAPI_URL}/api/auth/steam/callback`,
+      'openid.realm': import.meta.env.VITE_STRAPI_URL,
       'openid.identity': 'http://specs.openid.net/auth/2.0/identifier_select',
       'openid.claimed_id': 'http://specs.openid.net/auth/2.0/identifier_select'
     });
