@@ -2,52 +2,23 @@
   import { login } from '$lib/stores/auth';
   import { goto } from '$app/navigation';
   
-  const STEAM_OPENID_URL = 'https://steamcommunity.com/openid/login';
-  const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
-  const RETURN_URL = `${FRONTEND_URL}/auth/steam/callback`;
-  
-  function handleSteamLogin() {
+  const handleSteamLogin = () => {
+    const steamLoginUrl = new URL('https://steamcommunity.com/openid/login');
     const params = new URLSearchParams({
       'openid.ns': 'http://specs.openid.net/auth/2.0',
       'openid.mode': 'checkid_setup',
-      'openid.return_to': RETURN_URL,
-      'openid.realm': FRONTEND_URL,
+      'openid.return_to': `${import.meta.env.VITE_FRONTEND_URL}/auth/steam/callback`,
+      'openid.realm': import.meta.env.VITE_FRONTEND_URL,
       'openid.identity': 'http://specs.openid.net/auth/2.0/identifier_select',
       'openid.claimed_id': 'http://specs.openid.net/auth/2.0/identifier_select'
     });
-
-    const width = 800;
-    const height = 600;
-    const left = (window.screen.width / 2) - (width / 2);
-    const top = (window.screen.height / 2) - (height / 2);
-
-    const popup = window.open(
-      `${STEAM_OPENID_URL}?${params.toString()}`,
-      'SteamLogin',
-      `width=${width},height=${height},left=${left},top=${top}`
+    
+    const loginWindow = window.open(
+      `${steamLoginUrl.toString()}?${params.toString()}`,
+      'Steam Login',
+      'width=800,height=600,status=0,location=0,menubar=0'
     );
-
-    if (!popup) {
-      alert('Please enable popups to use Steam login');
-      return;
-    }
-
-    const messageHandler = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin) return;
-      
-      if (event.data.type === 'STEAM_AUTH_SUCCESS') {
-        const { user, jwt } = event.data.data;
-        login(user, jwt);
-        goto('/');
-      } else if (event.data.type === 'STEAM_AUTH_ERROR') {
-        alert('Steam login failed: ' + event.data.error);
-      }
-      
-      window.removeEventListener('message', messageHandler);
-    };
-
-    window.addEventListener('message', messageHandler);
-  }
+  };
 </script>
 
 <button class="steam-login" on:click={handleSteamLogin}>

@@ -1,17 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
-
+  
   const STRAPI_URL = import.meta.env.VITE_STRAPI_URL;
 
   onMount(() => {
     const params = new URLSearchParams(window.location.search);
     
-    fetch(`${STRAPI_URL}/api/auth/steam/callback?${params.toString()}`)
+    fetch(`${STRAPI_URL}/api/auth/steam/callback?${params.toString()}`, {
+      method: 'GET',
+      credentials: 'include'
+    })
       .then(response => response.json())
       .then(data => {
         // Send message to parent window
-        window.opener.postMessage({
+        window.opener?.postMessage({
           type: 'STEAM_AUTH_SUCCESS',
           data: data
         }, window.location.origin);
@@ -20,7 +22,8 @@
         window.close();
       })
       .catch(error => {
-        window.opener.postMessage({
+        console.error('Steam auth error:', error);
+        window.opener?.postMessage({
           type: 'STEAM_AUTH_ERROR',
           error: error.message
         }, window.location.origin);

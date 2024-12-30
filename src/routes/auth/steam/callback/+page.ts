@@ -49,6 +49,7 @@ export const load = async ({ url, fetch }) => {
     throw redirect(303, '/');
 
   } catch (error) {
+    console.error('Steam auth error:', error);
     if (window.opener) {
       window.opener.postMessage(
         { 
