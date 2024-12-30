@@ -11,8 +11,19 @@ const config = {
 		// Switch from adapter-auto to adapter-static for static builds
 		adapter: adapter({
 			// Set options if needed, such as fallback for single-page applications
-			fallback: 'index.html', // Ensures the app works with client-side routing
+			fallback: 'index.html', // This is crucial for client-side routing
+			pages: 'build',
+			assets: 'build',
+			precompress: false,
+			strict: true
 		}),
+		prerender: {
+			handleHttpError: ({ path, referrer, message }) => {
+				// Ignore all 404s except for the root page
+				if (path !== '/' && message.includes('Not found')) return;
+				throw new Error(message);
+			}
+		}
 	},
 };
 
