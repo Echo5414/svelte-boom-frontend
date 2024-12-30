@@ -1,6 +1,7 @@
 <script lang="ts">
   import { login } from '$lib/stores/auth';
   import { goto } from '$app/navigation';
+  import { onMount } from 'svelte';
   
   const handleSteamLogin = () => {
     const steamLoginUrl = new URL('https://steamcommunity.com/openid/login');
@@ -19,6 +20,23 @@
       'width=800,height=600,status=0,location=0,menubar=0'
     );
   };
+
+  // Add message event listener
+  onMount(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+
+      if (event.data.type === 'STEAM_AUTH_SUCCESS') {
+        // Refresh the page after successful login
+        window.location.reload();
+        // Or use goto to navigate to a specific page
+        // goto('/profile');
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  });
 </script>
 
 <button class="steam-login" on:click={handleSteamLogin}>
